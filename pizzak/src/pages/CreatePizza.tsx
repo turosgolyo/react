@@ -2,24 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import apiClient, { BACKEND_URL } from "../api/apiClient.ts";
 import type { Pizza } from "../types/Pizza.ts";
+import { toast } from "react-toastify";
 
-const UploadPizza = () => {
-  useEffect(() => {
-    if (id!) {
-      apiClient
-        .get(`pizzak/${id}`)
-        .then((response) => setPizza(response.data))
-        .catch((reason) => alert(reason));
-      console.log(pizza);
-    }
-  }, []);
-
-  const [pizza, setPizza] = useState<Pizza>();
-  const { id } = useParams();
-  const [nev, setNev] = useState(pizza?.nev);
-  const [leiras, setLeiras] = useState(pizza?.leiras);
-  const [ar, setAr] = useState(pizza?.ar);
-  const [imageUrl, setImageUrl] = useState(pizza?.imageUrl);
+const CreatePizza = () => {
+  const [nev, setNev] = useState("");
+  const [leiras, setLeiras] = useState("");
+  const [ar, setAr] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
 
   return (
     <>
@@ -70,21 +59,34 @@ const UploadPizza = () => {
       </table>
       <button
         onClick={() => {
+          const p: Pizza = {
+            nev,
+            leiras,
+            ar,
+            imageUrl,
+          }
           apiClient
-            .post("/pizzak", {
-              nev: nev,
-              leiras: leiras,
-              ar: ar,
-              imageUrl: imageUrl,
+            .post("/pizzak", p)
+            .then((response) => {
+              switch (response.status) {
+                case 201:
+                  toast.success("Sikeres létrehozás!")
+                  break;
+                case 400:
+                  toast.error("Bad request!")
+                  break;
+                default:
+                  toast.error("Hiba történt!")
+                  break;
+              }
             })
-            .then((response) => alert(response.status))
-            .catch((reason) => alert(reason));
+            .catch((reason) => console.error(reason));
         }}
       >
         Upload
-      </button>
+      </button >
     </>
   );
 };
 
-export default UploadPizza;
+export default CreatePizza;

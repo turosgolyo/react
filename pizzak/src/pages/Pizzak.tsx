@@ -12,17 +12,19 @@ const Pizzak = () => {
     apiClient
       .get("/pizzak")
       .then((response) => setPizzak(response.data))
-      .catch((reason) => alert(reason));
+      .catch((reason) => console.error(reason));
   }, []);
 
   return (
     <>
       <h1>Pizzák</h1>
-      <button onClick={() => navigate("/pizzak/letrehoz")}>Feltöltés</button>
-      <button onClick={() => toast.success("Success!")}>Toast</button>
+      <div className={"center"}>
+        <button onClick={() => navigate("/pizzak/letrehoz")}>Feltöltés</button>
+        <button onClick={() => toast.success("Success!")}>Toast</button>
+      </div>
       {pizzak.map((p) => (
-        <div>
-          <img src={`${BACKEND_URL}/kepek/${p.imageUrl}`} width={250} />
+        <div className={"center"}>
+          <img src={`${BACKEND_URL}/kepek/${p.imageUrl}`} onClick={() => navigate(`/pizzak/${p.id}`)} width={250} />
           <h2>{p.nev}</h2>
           <div>{p.leiras}</div>
         </div>
