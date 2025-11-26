@@ -1,17 +1,27 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { ToastContainer } from 'react-bootstrap'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Main from './Pages/Main.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import AllPizza from "./pages/AllPizza";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import OnePizza from "./pages/OnePizza";
+import NewPizza from "./pages/NewPizza";
+import EditPizza from "./pages/EditPizza";
+import Cart from "./pages/Cart";
+import NotFoundPage from "./pages/errors/NotFoundPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<AllPizza />} />
+        <Route path="/pizza/:id" element={<OnePizza />} />
+        <Route path="/edit-pizza/:id" element={<EditPizza />} />
+        <Route path="/new-pizza" element={<NewPizza />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
-    <ToastContainer></ToastContainer>
-  </StrictMode>,
-)
+    <ToastContainer theme="colored" />
+  </StrictMode>
+);
