@@ -4,6 +4,7 @@ import type { Pizza } from "../types/Pizza";
 import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import apiClient, { baseURL } from "../api/apiClient";
 import { FaTrash } from "react-icons/fa";
+import { GiNuclearBomb } from "react-icons/gi";
 
 const Cart = () => {
   const [pizzak, setPizzak] = useState<Array<Pizza>>([]);
@@ -41,6 +42,7 @@ const Cart = () => {
   };
 
   return (
+    <>
     <Table striped bordered>
       <thead>
         <th>Név</th>
@@ -64,6 +66,12 @@ const Cart = () => {
         })}
       </tbody>
     </Table>
+    <Button onClick={() => {
+      setKosar([])
+    }} variant="warning">
+      <GiNuclearBomb />
+    </Button>
+    </>
   );
 };
 export default Cart;
