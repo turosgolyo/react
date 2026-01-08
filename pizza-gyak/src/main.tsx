@@ -8,12 +8,16 @@ import OnePizza from "./pages/OnePizza";
 import Cart from "./pages/Cart";
 import AddPizza from "./pages/AddPizza";
 import EditPizza from "./pages/EditPizza";
+import Login from "./pages/Login";
+import Orders from "./pages/Orders";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/pizzak" element={<AllPizza />} />
+        <Route path="/" element={<AllPizza />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/pizzak/:id" element={<OnePizza />} />
         <Route path="/pizzak/hozzaad" element={<AddPizza />} />
         <Route path="/pizzak/szerkeszt/:id" element={<EditPizza />} />
