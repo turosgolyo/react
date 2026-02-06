@@ -10,6 +10,7 @@ const AllPizza = () => {
 
   const a = 0;
   const b = 0;
+  const c = 0;
 
   const [kosar, setKosar] = useState<Array<number>>(
     JSON.parse(localStorage.getItem("cart") ?? "[]"),
