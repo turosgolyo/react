@@ -8,8 +8,10 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 const AllPizza = () => {
   const navigate = useNavigate();
 
+  const a = 0;
+
   const [kosar, setKosar] = useState<Array<number>>(
-    JSON.parse(localStorage.getItem("cart") ?? "[]")
+    JSON.parse(localStorage.getItem("cart") ?? "[]"),
   );
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(kosar));
