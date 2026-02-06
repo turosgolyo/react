@@ -9,6 +9,7 @@ const AllPizza = () => {
   const navigate = useNavigate();
 
   const a = 0;
+  const b = 0;
 
   const [kosar, setKosar] = useState<Array<number>>(
     JSON.parse(localStorage.getItem("cart") ?? "[]"),
