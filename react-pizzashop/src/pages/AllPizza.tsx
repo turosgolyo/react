@@ -12,6 +12,7 @@ const AllPizza = () => {
   const b = 0;
   const c = 0;
   const d = 0;
+  (sdf, fhgksjhg);
 
   const [kosar, setKosar] = useState<Array<number>>(
     JSON.parse(localStorage.getItem("cart") ?? "[]"),
